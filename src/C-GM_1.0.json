@@ -1,0 +1,601 @@
+[
+    {
+        "id": "c01d41a4.a2fbc",
+        "type": "tab",
+        "label": "Flow 1"
+    },
+    {
+        "id": "abfb5d7e.08e79",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#808080",
+                "baseFont": "Arial,Arial,Helvetica,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#808080",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#a6a6a6",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#808080",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "Arial,Arial,Helvetica,sans-serif"
+                }
+            }
+        },
+        "site": {
+            "name": "RADIOACTIVITY MONITOR",
+            "hideToolbar": "false",
+            "allowSwipe": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "ffe70ae.c138e78",
+        "type": "ui_group",
+        "z": "",
+        "name": "COUNTER DATA",
+        "tab": "cda5c5.69b33a38",
+        "order": 1,
+        "disp": false,
+        "width": "6"
+    },
+    {
+        "id": "ec23fafd.41788",
+        "type": "ui_group",
+        "z": "",
+        "name": "ß, Ɣ, RADIATIONS",
+        "tab": "b6ab1de6.e87ad8",
+        "order": 1,
+        "disp": false,
+        "width": "6"
+    },
+    {
+        "id": "b6ab1de6.e87ad8",
+        "type": "ui_tab",
+        "z": "",
+        "name": "RADIOACTIVITY",
+        "icon": "dashboard",
+        "order": 1
+    },
+    {
+        "id": "cda5c5.69b33a38",
+        "type": "ui_tab",
+        "z": "",
+        "name": "GM COUNTER",
+        "icon": "dashboard",
+        "order": 2
+    },
+    {
+        "id": "4d0b454.994503c",
+        "type": "ui_group",
+        "z": "",
+        "name": "HISTORY",
+        "tab": "cec43638.3e2b48",
+        "order": 2,
+        "disp": false,
+        "width": "6"
+    },
+    {
+        "id": "cec43638.3e2b48",
+        "type": "ui_tab",
+        "z": "",
+        "name": "HISTORY",
+        "icon": "dashboard",
+        "order": 3
+    },
+    {
+        "id": "2050223d.9dc9de",
+        "type": "debug",
+        "z": "c01d41a4.a2fbc",
+        "name": "DEBUGGER",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 920,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "e704e14f.9ac4e8",
+        "type": "comment",
+        "z": "c01d41a4.a2fbc",
+        "name": "Change in \"Request C-GM\" the IP address of the device",
+        "info": "",
+        "x": 370,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "d90b6172.875a68",
+        "type": "function",
+        "z": "c01d41a4.a2fbc",
+        "name": "JSON Parser",
+        "func": "\n// Get GM tube conversion factor\nvar FACTOR  = msg.payload.params.factor;\nglobal.set( \"FACTOR\", FACTOR );\n\n// Split and redirect data\nmsg1 = {  \"payload\":( msg.payload.data.CPM  / FACTOR ).toFixed(2) };\nmsg2 = {  \"payload\":( msg.payload.data.MAX  / FACTOR ).toFixed(2) };\nmsg3 = {  \"payload\":( msg.payload.data.AVG  / FACTOR ).toFixed(2) };\n\nmsg4 = {  \"payload\":msg.payload.params.elapsed };\nmsg5 = {  \"payload\":msg.payload.data.CPM };\nmsg6 = {  \"payload\":msg.payload.data.MAX };\nmsg7 = {  \"payload\":msg.payload.data.AVG };\nmsg8 = {  \"payload\":msg.payload.data.TOT };\nmsg9 = {  \"payload\":msg.payload.params.alarm };\nmsg10 = { \"payload\":msg.payload.params.voltage };\nmsg11 = { \"payload\":msg.payload.params.device_ip };\n\nreturn [msg1, msg2, msg3, msg4, msg5, msg6, msg7, msg8, msg9, msg10, msg11];\n",
+        "outputs": 11,
+        "noerr": 0,
+        "x": 690,
+        "y": 280,
+        "wires": [
+            [
+                "4669311f.5bc93",
+                "2050223d.9dc9de"
+            ],
+            [
+                "ca6af2a6.36d18"
+            ],
+            [
+                "636b5f41.da5aa8"
+            ],
+            [
+                "ddc9a9c7.59c87"
+            ],
+            [
+                "3b09f515.ea8dfa"
+            ],
+            [
+                "a9884fd5.0a9d5"
+            ],
+            [
+                "5dca7e3e.a419"
+            ],
+            [
+                "3a9c63de.07d2fc"
+            ],
+            [
+                "4ad147a3.2c038"
+            ],
+            [
+                "c2554d21.084888"
+            ],
+            [
+                "7f1c86c9.4d6e3"
+            ]
+        ]
+    },
+    {
+        "id": "28e90f4d.5ceb6",
+        "type": "comment",
+        "z": "c01d41a4.a2fbc",
+        "name": "Home page",
+        "info": "",
+        "x": 910,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "4960c9aa.d34088",
+        "type": "comment",
+        "z": "c01d41a4.a2fbc",
+        "name": "History page",
+        "info": "",
+        "x": 910,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "e6052f89.047658",
+        "type": "ui_template",
+        "z": "c01d41a4.a2fbc",
+        "group": "ec23fafd.41788",
+        "name": "Help",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "format": "<p style='font-weight: bold;'>RADIATION's LEVELS:</p>\n<div style='font: 8pt Arial; padding: 5px;'>\n<span style='color: #00CC00'> < 0.20  uSv/h - NORMAL:     very low level<br /></span>\n<span style='color: #AAFFAA'> < 0.50  uSv/h - SAFE:       check regularly<br /></span>\n<span style='color: #FFAA00'> < 1.00  uSv/h - WARNING:    potential danger, find out why<br /></span>\n<span style='color: #FF8888'> < 6.50  uSv/h - HIGH LEVEL: leave area (exclusion zone)<br /></span>\n<span style='color: #FF0000'> < 13.0  uSv/h - CRITICAL:   leave area ASAP<br /></span>\n<span style='color: #CC00FF'> > 13.0  uSv/h - EXTREME:    Evacuate immediately</span></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 890,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "404f6c9b.acbef4",
+        "type": "inject",
+        "z": "c01d41a4.a2fbc",
+        "name": "Every 1min",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "60",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "",
+        "x": 130,
+        "y": 280,
+        "wires": [
+            [
+                "f9a6b1b8.9190e"
+            ]
+        ]
+    },
+    {
+        "id": "f9a6b1b8.9190e",
+        "type": "http request",
+        "z": "c01d41a4.a2fbc",
+        "name": "Request C-GM",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://192.168.0.2/?JSON",
+        "tls": "",
+        "x": 320,
+        "y": 280,
+        "wires": [
+            [
+                "80a2a151.fb59f"
+            ]
+        ]
+    },
+    {
+        "id": "80a2a151.fb59f",
+        "type": "json",
+        "z": "c01d41a4.a2fbc",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 510,
+        "y": 280,
+        "wires": [
+            [
+                "d90b6172.875a68",
+                "55d579fd.0d4c18"
+            ]
+        ]
+    },
+    {
+        "id": "abfb8788.99568",
+        "type": "comment",
+        "z": "c01d41a4.a2fbc",
+        "name": "Get C-GM Counter data every minute",
+        "info": "Retrieve CPM, MAX and AVG from JSON reply",
+        "x": 190,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "ca6af2a6.36d18",
+        "type": "ui_gauge",
+        "z": "c01d41a4.a2fbc",
+        "name": "Max_Level_G",
+        "group": "ec23fafd.41788",
+        "order": 2,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Max Level",
+        "label": "µSv / h",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1",
+        "colors": [
+            "#aeffae",
+            "#e6ffe8",
+            "#ffc082"
+        ],
+        "seg1": "0.2",
+        "seg2": "0.5",
+        "x": 920,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "636b5f41.da5aa8",
+        "type": "ui_gauge",
+        "z": "c01d41a4.a2fbc",
+        "name": "Avg_Level_G",
+        "group": "ec23fafd.41788",
+        "order": 3,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Average Level",
+        "label": "µSv / h",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1",
+        "colors": [
+            "#aeffae",
+            "#e6ffe8",
+            "#ffc082"
+        ],
+        "seg1": "0.2",
+        "seg2": "0.5",
+        "x": 920,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "3b09f515.ea8dfa",
+        "type": "ui_text",
+        "z": "c01d41a4.a2fbc",
+        "group": "ffe70ae.c138e78",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Cur_Level",
+        "label": "Current Level",
+        "format": "{{value}} CPM",
+        "layout": "row-spread",
+        "x": 910,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "a9884fd5.0a9d5",
+        "type": "ui_text",
+        "z": "c01d41a4.a2fbc",
+        "group": "ffe70ae.c138e78",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "Max_Level",
+        "label": "Max Level",
+        "format": "{{value}} CPM",
+        "layout": "row-spread",
+        "x": 910,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "5dca7e3e.a419",
+        "type": "ui_text",
+        "z": "c01d41a4.a2fbc",
+        "group": "ffe70ae.c138e78",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "Avg_Level",
+        "label": "Average Level",
+        "format": "{{value}} CPM",
+        "layout": "row-spread",
+        "x": 910,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "ddc9a9c7.59c87",
+        "type": "ui_text",
+        "z": "c01d41a4.a2fbc",
+        "group": "ffe70ae.c138e78",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "Elapsed",
+        "label": "Elapsed time",
+        "format": "{{value}}",
+        "layout": "row-spread",
+        "x": 900,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "4669311f.5bc93",
+        "type": "ui_gauge",
+        "z": "c01d41a4.a2fbc",
+        "name": "Cur_Level_G",
+        "group": "ec23fafd.41788",
+        "order": 1,
+        "width": "6",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Current Level",
+        "label": "µSv / h",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1",
+        "colors": [
+            "#aeffae",
+            "#e6ffe8",
+            "#ffc082"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 920,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "3a9c63de.07d2fc",
+        "type": "ui_text",
+        "z": "c01d41a4.a2fbc",
+        "group": "ffe70ae.c138e78",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "Total_Count",
+        "label": "Total count",
+        "format": "{{value}} CPM",
+        "layout": "row-spread",
+        "x": 910,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "c8add1b6.a8e738",
+        "type": "ui_chart",
+        "z": "c01d41a4.a2fbc",
+        "name": "History_Chart",
+        "group": "4d0b454.994503c",
+        "order": 1,
+        "width": "6",
+        "height": "8",
+        "label": "Real time plot",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "data waiting...",
+        "ymin": "0",
+        "ymax": "1",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "colors": [
+            "#1f77b4",
+            "#ff8000",
+            "#0000ff",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "x": 920,
+        "y": 680,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "55d579fd.0d4c18",
+        "type": "function",
+        "z": "c01d41a4.a2fbc",
+        "name": "JSON Parser",
+        "func": "\n// Get GM tube conversion factor\nvar FACTOR  = msg.payload.params.factor;\nglobal.set( \"FACTOR\", FACTOR );\n\n// Split and redirect data\nmsg1 = { \"topic\":\"Level\",   \"payload\":( Number(msg.payload.data.CPM  / FACTOR ).toFixed(2) ) };\nmsg2 = { \"topic\":\"Maximum\", \"payload\":( Number(msg.payload.data.MAX  / FACTOR ).toFixed(2) ) };\nmsg3 = { \"topic\":\"Average\", \"payload\":( Number(msg.payload.data.AVG  / FACTOR ).toFixed(2) ) };\n\n\nreturn [msg1, msg2, msg3];\n",
+        "outputs": 3,
+        "noerr": 0,
+        "x": 690,
+        "y": 680,
+        "wires": [
+            [
+                "c8add1b6.a8e738"
+            ],
+            [
+                "c8add1b6.a8e738"
+            ],
+            [
+                "c8add1b6.a8e738"
+            ]
+        ]
+    },
+    {
+        "id": "630ac251.c0e33c",
+        "type": "comment",
+        "z": "c01d41a4.a2fbc",
+        "name": "GM Counter page",
+        "info": "",
+        "x": 930,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "4ad147a3.2c038",
+        "type": "ui_text",
+        "z": "c01d41a4.a2fbc",
+        "group": "ffe70ae.c138e78",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "Alarm_thres",
+        "label": "Alarm threshold",
+        "format": "{{value}} CPM",
+        "layout": "row-spread",
+        "x": 910,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "c2554d21.084888",
+        "type": "ui_text",
+        "z": "c01d41a4.a2fbc",
+        "group": "ffe70ae.c138e78",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "Alarm_thres",
+        "label": "GM tube voltage",
+        "format": "{{value}} Volts",
+        "layout": "row-spread",
+        "x": 910,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "7f1c86c9.4d6e3",
+        "type": "ui_text",
+        "z": "c01d41a4.a2fbc",
+        "group": "ffe70ae.c138e78",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "Alarm_thres",
+        "label": "C-GM counter IP",
+        "format": "{{value}}",
+        "layout": "row-spread",
+        "x": 910,
+        "y": 580,
+        "wires": []
+    }
+]
