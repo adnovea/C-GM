@@ -6,6 +6,8 @@ C-GM Counter (IoT) continuously monitors Beta/Gamma radiation levels acquired fr
 
 This project is aimed for providing real-time monitoring of the radioactivity level on Smartphones, Tablets or Desktops. It is made of an Open-source QNAP IoT application written in Node-RED running on QNAP servers connected to a DIY C-GM Counter device (Open-source Hardware). This project has been developed and is provided AS IS by AdNovea®.
 
+![GitHub Logo](https://github.com/adnovea/C-GM/blob/master/images/C-GM_Counter_01.png?raw=true)
+
 **C-CGM Counter:** - Device (IoT) hardware and firmware for measuring radioactivity levels.
 
 **C-GM Manager:** - A QNAP IoT application for real-time monitoring of Beta/Gamma radiation levels acquired from DIY C-GM Geiger-Muller Counters.
