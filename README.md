@@ -1,4 +1,4 @@
-#C-GM Counter# - Connected Geiger-Müller Counter (IoT)
+**C-GM Counter** - *Connected Geiger-Müller Counter (IoT)*
 by AdNovea (c)2018
 
 **************************************************************************************
