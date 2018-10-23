@@ -16,7 +16,7 @@ This project is aimed for providing real-time monitoring of the radioactivity le
 ![GitHub Logo](https://github.com/adnovea/C-GM/blob/master/images/C-GM_Counter_01.png?raw=true)
 
 
-**A-GM Manager:** - There is also a classic QNAP QPKG installation available provifing a web application for long-term continuously monitoring and storing on local servers. (https://sourceforge.net/projects/a-gm-manager/)
+**A-GM Manager:** - There is also a classic QNAP QPKG installation available provifing a web application for long-term continuously monitoring and storing on local servers.
 
 **************************************************************************************
   
