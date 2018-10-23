@@ -8,10 +8,13 @@ This project is aimed for providing real-time monitoring of the radioactivity le
 
 
 **C-GM Manager:** - A QNAP IoT application for real-time monitoring of Beta/Gamma radiation levels acquired from DIY C-GM Geiger-Muller Counters.
+
 ![GitHub Logo](https://github.com/adnovea/C-GM/blob/master/images/CGM_Node-RED.png?raw=true)
 
 **C-CGM Counter:** - Device (IoT) hardware and firmware for measuring radioactivity levels.
+
 ![GitHub Logo](https://github.com/adnovea/C-GM/blob/master/images/C-GM_Counter_01.png?raw=true)
+
 
 **A-GM Manager:** - There is also a classic QNAP QPKG installation available provifing a web application for long-term continuously monitoring and storing on local servers. (https://sourceforge.net/projects/a-gm-manager/)
 
