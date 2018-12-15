@@ -12,6 +12,7 @@ This project is aimed for providing real-time monitoring of the radioactivity le
 ![C-GM Counter device](images/C-GM_Counter_01.png)
 
 **C-GM Manager:** - A QNAP IoT application for real-time monitoring of Beta/Gamma radiation levels acquired from DIY C-GM Geiger-Muller Counters.
+
 ![Node RED Interface](images/CGM_Node-RED.png)
 
 
